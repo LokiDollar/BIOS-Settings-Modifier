@@ -108,7 +108,7 @@ class NVRAMEditor:
         self.settings_label = ttk.Label(settings_row, text="No file selected", style='Info.TLabel')
         self.settings_label.pack(side='left', padx=(10, 0))
 
-        settings_btn = ttk.Button(settings_row, text="📄 Browse Settings",
+        settings_btn = ttk.Button(settings_row, text="Browse Settings",
                                   command=self.browse_settings, style='Secondary.TButton')
         settings_btn.pack(side='right')
 
@@ -120,7 +120,7 @@ class NVRAMEditor:
         self.nvram_label = ttk.Label(nvram_row, text="No file selected", style='Info.TLabel')
         self.nvram_label.pack(side='left', padx=(10, 0))
 
-        nvram_btn = ttk.Button(nvram_row, text="🔧 Browse NVRAM",
+        nvram_btn = ttk.Button(nvram_row, text="Browse NVRAM",
                                command=self.browse_nvram, style='Secondary.TButton')
         nvram_btn.pack(side='right')
 
@@ -451,5 +451,6 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
