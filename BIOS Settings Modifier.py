@@ -156,7 +156,7 @@ class NVRAMEditor:
         button_frame = tk.Frame(main_container, bg=self.bg_color)
         button_frame.pack(fill='x', pady=(0, 15))
 
-        self.process_button = ttk.Button(button_frame, text="🚀 Process NVRAM File",
+        self.process_button = ttk.Button(button_frame, text="Process NVRAM File",
                                          command=self.process_nvram, state="disabled", style='Accent.TButton')
         self.process_button.pack(side='left')
 
@@ -173,7 +173,7 @@ class NVRAMEditor:
 
         ttk.Label(log_header, text="Process Log", style='Subtitle.TLabel').pack(side='left')
 
-        clear_btn = ttk.Button(log_header, text="🗑️ Clear",
+        clear_btn = ttk.Button(log_header, text="Clear Log",
                                command=self.clear_log, style='Secondary.TButton')
         clear_btn.pack(side='right')
 
@@ -235,11 +235,11 @@ class NVRAMEditor:
 
             count = len(self.settings_data)
             self.count_label.config(text=f"{count} settings loaded")
-            self.log(f"✅ Loaded {count} settings from file", "success")
+            self.log(f"Loaded {count} settings from file", "success")
 
         except Exception as e:
             messagebox.showerror("Error", f"Failed to load settings file: {str(e)}")
-            self.log(f"❌ Error loading settings: {str(e)}", "error")
+            self.log(f"Error loading settings: {str(e)}", "error")
 
     def check_ready(self):
         if self.settings_file and self.nvram_file and self.settings_data:
@@ -268,7 +268,7 @@ class NVRAMEditor:
 
     def process_nvram(self):
         try:
-            self.log("🚀 Starting NVRAM processing...", "info")
+            self.log("Starting NVRAM processing...", "info")
             self.status_indicator.config(text="Processing...", foreground=self.warning_color)
 
             # Try to read NVRAM file as text first
@@ -278,17 +278,17 @@ class NVRAMEditor:
             try:
                 with open(self.nvram_file, 'r', encoding='utf-8') as f:
                     nvram_content = f.read()
-                self.log("📄 NVRAM file detected as text format", "info")
+                self.log("NVRAM file detected as text format", "info")
             except UnicodeDecodeError:
                 # File is binary, try to read with different encodings or as binary
-                self.log("🔧 NVRAM file appears to be binary, attempting to read...", "info")
+                self.log("NVRAM file appears to be binary, attempting to read...", "info")
                 try:
                     with open(self.nvram_file, 'r', encoding='latin-1') as f:
                         nvram_content = f.read()
                     is_binary = True
-                    self.log("✅ Successfully read binary NVRAM file", "success")
+                    self.log("Successfully read binary NVRAM file", "success")
                 except Exception as e:
-                    self.log(f"⚠️ Failed to read binary file with latin-1: {e}", "warning")
+                    self.log(f"Failed to read binary file with latin-1: {e}", "warning")
                     # Try reading as binary and converting
                     with open(self.nvram_file, 'rb') as f:
                         binary_data = f.read()
@@ -297,27 +297,27 @@ class NVRAMEditor:
                     try:
                         nvram_content = binary_data.decode('utf-8', errors='ignore')
                         is_binary = True
-                        self.log("✅ Read binary file with UTF-8 (ignoring errors)", "success")
+                        self.log("Read binary file with UTF-8 (ignoring errors)", "success")
                     except:
                         # Last resort: convert binary to latin-1
                         nvram_content = binary_data.decode('latin-1')
                         is_binary = True
-                        self.log("✅ Read binary file as latin-1", "success")
+                        self.log("Read binary file as latin-1", "success")
 
-            self.log(f"📊 Original file size: {len(nvram_content)} characters", "info")
+            self.log(f"Original file size: {len(nvram_content)} characters", "info")
 
             total_changes = 0
 
             # Process each setting
             for setting_name, desired_value in self.settings_data.items():
-                self.log(f"🔍 Processing: {setting_name} -> {desired_value}", "info")
+                self.log(f"Processing: {setting_name} -> {desired_value}", "info")
 
                 # Convert hex value to integer
                 try:
                     value_int = int(desired_value, 16)
                     value_hex_string = f"{value_int:02X}"  # Format as 2-digit hex
                 except ValueError:
-                    self.log(f"❌ Invalid hex value {desired_value}", "error")
+                    self.log(f"Invalid hex value {desired_value}", "error")
                     continue
 
                 # Find all occurrences of this setting
@@ -325,10 +325,10 @@ class NVRAMEditor:
                 matches = list(re.finditer(setting_pattern, nvram_content))
 
                 if not matches:
-                    self.log(f"⚠️ Setting not found in NVRAM file", "warning")
+                    self.log(f"Setting not found in NVRAM file", "warning")
                     continue
 
-                self.log(f"🎯 Found {len(matches)} instances", "info")
+                self.log(f"Found {len(matches)} instances", "info")
 
                 # Process each match
                 changes_made = 0
@@ -391,12 +391,12 @@ class NVRAMEditor:
                         offset_adjustment += len(nvram_content) - old_content_len
 
                         changes_made += 1
-                        self.log(f"    ✅ Updated instance {changes_made}", "success")
+                        self.log(f" Updated instance {changes_made}", "success")
                     else:
-                        self.log(f"    ⚠️ Could not find option value {desired_value}", "warning")
+                        self.log(f" Could not find option value {desired_value}", "warning")
 
                 total_changes += changes_made
-                self.log(f"📈 Total changes for this setting: {changes_made}", "info")
+                self.log(f" Total changes for this setting: {changes_made}", "info")
 
             if total_changes > 0:
                 # Save the modified file
@@ -416,22 +416,22 @@ class NVRAMEditor:
                         with open(save_path, 'w', encoding='utf-8') as f:
                             f.write(nvram_content)
 
-                    self.log(f"💾 File saved successfully: {os.path.basename(save_path)}", "success")
-                    self.log(f"🎉 Total changes made: {total_changes}", "success")
+                    self.log(f" File saved successfully: {os.path.basename(save_path)}", "success")
+                    self.log(f" Total changes made: {total_changes}", "success")
                     self.status_indicator.config(text="Processing complete!", foreground=self.success_color)
                     messagebox.showinfo("Success! 🎉",
                                         f"NVRAM file processed successfully!\n\nTotal changes: {total_changes}\nSaved to: {os.path.basename(save_path)}")
                 else:
-                    self.log("❌ Save cancelled by user", "warning")
+                    self.log(" Save cancelled by user", "warning")
                     self.status_indicator.config(text="Save cancelled", foreground=self.warning_color)
             else:
-                self.log("⚠️ No changes were made to the file", "warning")
+                self.log("No changes were made to the file", "warning")
                 self.status_indicator.config(text="No changes made", foreground=self.warning_color)
                 messagebox.showwarning("No Changes", "No changes were made to the NVRAM file")
 
         except Exception as e:
             error_msg = f"Error processing NVRAM file: {str(e)}"
-            self.log(f"❌ {error_msg}", "error")
+            self.log(f" {error_msg}", "error")
             self.status_indicator.config(text="Processing failed", foreground='#ff4444')
             messagebox.showerror("Error", error_msg)
 
@@ -451,4 +451,5 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
