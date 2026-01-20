@@ -22,5 +22,3 @@ The settings file should be a `.txt` file, with each line following this format:
 - You can find the available values and their meanings in your exported `nvram.txt` file from SCEWIN.
 
 Works with AMD / Intel. 
-
-<img width="691" height="789" alt="Project_PICTURE" src="https://github.com/user-attachments/assets/5bb6bb4b-28bb-471b-917e-3ff896eb86c4" />
