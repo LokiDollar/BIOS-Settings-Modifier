@@ -252,15 +252,6 @@ class NVRAMEditor:
     def log(self, message, type="info"):
         timestamp = __import__('datetime').datetime.now().strftime("%H:%M:%S")
 
-        if type == "success":
-            prefix = "✅"
-        elif type == "error":
-            prefix = "❌"
-        elif type == "warning":
-            prefix = "⚠️"
-        else:
-            prefix = "ℹ️"
-
         formatted_message = f"[{timestamp}] {prefix} {message}\n"
         self.status_text.insert(tk.END, formatted_message)
         self.status_text.see(tk.END)
@@ -451,6 +442,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 
 
