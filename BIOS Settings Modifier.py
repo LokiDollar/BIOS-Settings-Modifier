@@ -91,11 +91,8 @@ class NVRAMEditor:
         title_label = ttk.Label(header_frame, text="BIOS Settings Modifier", style='Title.TLabel')
         title_label.pack(anchor='w')
 
-        creator_label = ttk.Label(header_frame, text="Created by Mushroom 🍄", style='Info.TLabel')
+        creator_label = ttk.Label(header_frame, text="Created by Mushroom6.6", style='Info.TLabel')
         creator_label.pack(anchor='w', pady=(0, 5))
-
-        description_label = ttk.Label(header_frame, text="Modify duplicate BIOS settings with ease", style='Info.TLabel')
-        description_label.pack(anchor='w')
 
         # File selection card
         file_card = ttk.Frame(main_container, style='Card.TFrame', padding=20)
@@ -454,3 +451,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+
