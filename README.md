@@ -30,4 +30,4 @@ Please read these points before using the tool:
 - `Preset-Examples/Intel.Settings.preset.txt`: Example configuration file showing sample setting names and values found on some
 
 
-(This is a quick, Vibe-Coded Project, I didn't programmed anything related, It's helpful to use when modifying nvram text files created by SCEWIN, That was the entire purpose). 
+(This is a quick, Vibe-Coded Project. It's helpful to use when modifying nvram text files created by SCEWIN, That was the entire purpose). 
