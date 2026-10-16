@@ -1,0 +1,7 @@
+"SVM Mode" 0x0
+"Global C-state Control" 0x0
+"Integrated Graphics" 0x1
+"Enable Hibernation" 0x1
+"Global C-state Control" 0x0
+"ZEN5 Gaming Optimizations" 0x2
+

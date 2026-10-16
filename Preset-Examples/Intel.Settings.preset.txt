@@ -1,0 +1,11 @@
+"CFG Lock" 0x0
+"Intel C-State" 0x0
+"Enable Hibernation" 0x0
+"DDR PowerDown" 0x0
+"Package C State Limit" 0x0
+"CPU C-States" 0x0
+"Package C-States Support" 0x0
+"Global C-state Control" 0x0
+"Integrated Graphics" 0x0
+"Intel (VMX) Virtualization Technology" 0x0
+"Boot performance mode" 0x2
